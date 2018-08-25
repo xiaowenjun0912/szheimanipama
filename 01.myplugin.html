@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+            <num-component></num-component>
+    </div>
+</body>
+</html>
+<script src="./js/vue.js"></script>
+<!-- 导入自己插件 -->
+<script src="./js/num-plugin.js"></script>
+
+<script>
+    // 自己写一个组件 通过插件的语法 注册到vue中
+    // 插件中没有use 自行use
+    Vue.use(numPlugin);
+   
+
+
+    let app = new Vue({
+        el:"#app"
+    })
+</script>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    var sayHi = function () {}
+    sayHi();
+    // 自执行函数
+    // 生命了一个匿名函数 并且调用他
+    // 不想声明变量
+    // 想要有一个独立的作用域
+    (function () {})()
+
+
+    // 闭包
+    // 函数中的函数
+    // 作用:保护某一些变量 对外提供有限的访问权限
+    // 特点:延长变量的生命周期 有可能造成内存泄漏(老版本的IE)
+    // function out() {
+    //     let num = 10;
+    //     // 想要对外暴露三个功能
+    //     // 让外部可以访问
+    //     return {
+    //         // inner:inner,
+    //         // add:add,
+    //         // sub:sub,
+    //         inner() {
+    //             console.log(num);
+    //         },
+    //         add() {
+    //             num++;
+    //         },
+    //         sub() {
+    //             num--;
+    //         }
+    //     }
+    // }
+
+    // let sayNum = out();
+
+
+    // 自执行函数
+    let sayNum = (function () {
+        let num = 10;
+        // 想要对外暴露三个功能
+        // 让外部可以访问
+        return {
+            // inner:inner,
+            // add:add,
+            // sub:sub,
+            inner() {
+                console.log(num);
+            },
+            add() {
+                num++;
+            },
+            sub() {
+                num--;
+            }
+        }
+    })()
+
+    // 调用sayNum
+    // sayNum();
+    // sayNum.add();
+    // sayNum.add();
+    // sayNum.inner();
+
+    // 代码封装 沙箱 直接为window对象增加属性
+    // 是否必须要传入 window对象
+    // 如果不传入的话 window对象会不会增加一个 num属性 会
+    
+    // 但是一般我们都会传入window
+    // 沙箱的概念(独立的环境 外部可以修改内部 内部不能主动的修改外部)
+    // 为了压缩代码 形参的名字是可以随意更改的
+    ;(function(m){
+        // 声明变量
+        let num1 =10;
+        let num2 =10;
+        let num3 =10;
+
+        // 编写逻辑
+        function sayNum(){
+            console.log(num1);
+        }
+
+        // 暴露出去
+        window.sayNum = sayNum;
+    })(window)
+    // })()
+    console.log(window.num);
+</script>
